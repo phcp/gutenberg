@@ -50,6 +50,10 @@ export default function ToolsPanelColorDropdown( {
 			className="block-editor-tools-panel-color-gradient-settings__item"
 		>
 			<Dropdown
+				popoverProps={ {
+					placement: 'left-start',
+					offset: 36,
+				} }
 				className="block-editor-tools-panel-color-dropdown"
 				contentClassName="block-editor-panel-color-gradient-settings__dropdown-content"
 				renderToggle={ ( { isOpen, onToggle } ) => (
