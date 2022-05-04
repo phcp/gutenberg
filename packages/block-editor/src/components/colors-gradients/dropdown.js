@@ -30,9 +30,12 @@ export default function ColorGradientSettingsDropdown( {
 	enableAlpha,
 	settings,
 } ) {
-	let dropdownPosition;
+	let popoverProps;
 	if ( __experimentalIsRenderedInSidebar ) {
-		dropdownPosition = 'bottom left';
+		popoverProps = {
+			placement: 'left-start',
+			offset: 36,
+		};
 	}
 
 	return (
@@ -46,7 +49,7 @@ export default function ColorGradientSettingsDropdown( {
 					setting && (
 						<Dropdown
 							key={ index }
-							position={ dropdownPosition }
+							popoverProps={ popoverProps }
 							className="block-editor-panel-color-gradient-settings__dropdown"
 							contentClassName="block-editor-panel-color-gradient-settings__dropdown-content"
 							renderToggle={ ( { isOpen, onToggle } ) => {
