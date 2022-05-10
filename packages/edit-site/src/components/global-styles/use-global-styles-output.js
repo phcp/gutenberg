@@ -436,11 +436,13 @@ export const toStyles = ( tree, blockSelectors, hasBlockGapSupport ) => {
 	let ruleset = 'body {margin: 0;}';
 
 	// Add alignment rules.
+	// These are also implemented in class-wp-theme-json.php
 	if ( useRootVars ) {
-		ruleset =
-			ruleset +
-			'body { padding-right: 0; padding-left: 0; padding-top: var(--wp--style--root--padding-top); padding-bottom: var(--wp--style--root--padding-bottom); } .wp-site-blocks > * { padding-right: var(--wp--style--root--padding-right); padding-left: var(--wp--style--root--padding-left); }';
+		ruleset += '.wp-site-blocks { padding-top: var(--wp--style--root--padding-top); padding-bottom: var(--wp--style--root--padding-bottom); }';
+		ruleset += '.wp-site-blocks,.wp-block-group.alignfull,.wp-block-group.has-background,.wp-block-columns.alignfull.has-background,.wp-block-cover.alignfull { padding-right: var(--wp--style--root--padding-right); padding-left: var(--wp--style--root--padding-left); }';
+		ruleset += '.wp-site-blocks .alignfull { margin-right: calc(var(--wp--style--root--padding-right) * -1); margin-left: calc(var(--wp--style--root--padding-left) * -1); width: unset; }';
 	}
+
 	nodesWithStyles.forEach( ( { selector, duotoneSelector, styles } ) => {
 		const duotoneStyles = {};
 		if ( styles?.filter ) {

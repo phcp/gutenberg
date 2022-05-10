@@ -387,6 +387,7 @@ class WP_Theme_JSON_6_0 extends WP_Theme_JSON_5_9 {
 		$block_rules = '';
 		if ( static::ROOT_BLOCK_SELECTOR === $selector ) {
 			if ( $use_root_vars ) {
+				// These rules are duplicated in use-global-styles-output.js
 				$block_rules .= '.wp-site-blocks { padding-top: var(--wp--style--root--padding-top); padding-bottom: var(--wp--style--root--padding-bottom); }';
 
 				$block_rules .= '.wp-site-blocks,
