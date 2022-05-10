@@ -10,8 +10,16 @@
 3. Change all occurrences of `describe`, `beforeAll`, `beforeEach`, `afterEach` and `afterAll` with the `test.` prefix. For instance, `describe` turns into `test.describe`.
 4. Use the [fixtures API](https://playwright.dev/docs/test-fixtures) to require previously global variables like `page` and `browser`.
 5. Delete all the imports of `e2e-test-utils`. Instead, use the fixtures API to directly get the `admin`, `editor`, `pageUtils` and `requestUtils`. (However, `admin`, `editor` and `pageUtils` are not allowed in `beforeAll` and `afterAll`, rewrite them using `requestUtils` instead.)
-6. If there's a missing util, go ahead and [migrate it](#migration-steps-for-test-utils).
-7. Manually migrate other details in the tests following the proposed [best practices](https://github.com/WordPress/gutenberg/tree/HEAD/test/e2e/README.md#best-practices). Note that even though the differences in the API of Playwright and Puppeteer are similar, some manual changes are still required.
+6. If editor utils are required, configure the test to use them:
+    ```js
+    test.use( {
+	    editor: async ( { page }, use ) => {
+		    await use( new Editor( { page } ) );
+	    },
+    } );
+    ```
+7. If there's a missing util, go ahead and [migrate it](#migration-steps-for-test-utils).
+8. Manually migrate other details in the tests following the proposed [best practices](https://github.com/WordPress/gutenberg/tree/HEAD/test/e2e/README.md#best-practices). Note that even though the differences in the API of Playwright and Puppeteer are similar, some manual changes are still required.
 
 ## Migration steps for test utils
 
